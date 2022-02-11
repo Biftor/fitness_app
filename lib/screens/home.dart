@@ -6,6 +6,9 @@ import 'package:fitness_app/screens/profile_screen.dart';
 import 'package:fitness_app/size_config.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'dashboard_screen_controller.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -28,6 +31,12 @@ class _HomeScreenState extends State<HomeScreen> {
     Icon(Icons.directions_walk),
     Icon(Icons.person),
   ];
+
+  @override
+  void initState() {
+    Get.put(DashboardScreenController());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +88,6 @@ class _HomeScreenState extends State<HomeScreen> {
             (index) => BottomNavigationBarItem(
               icon: icons[index],
               label: '',
-              
             ),
           ),
         ),

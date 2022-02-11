@@ -1,10 +1,11 @@
 import 'package:fitness_app/constants.dart';
 import 'package:fitness_app/size_config.dart';
-import 'package:fitness_app/widget/heading_widget.dart';
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'dashboard_screen_controller.dart';
 
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends GetView<DashboardScreenController> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -29,16 +30,18 @@ class DashboardScreen extends StatelessWidget {
             Spacer(
               flex: 2,
             ),
-            _buildCard(
-                color1: CustomColors.kCyanColor,
-                color2: CustomColors.kYellowColor,
-                color3: CustomColors.kPurpleColor,
-                color4: CustomColors.kLightPinkColor,
-                value: 0.8,
-                iconPath: 'assets/icons/footprints.svg',
-                metricType: 'تعداد قدم ها',
-                metricCount1: '3500',
-                metricCount2: '860'),
+            Obx(() {
+              return _buildCard(
+                  color1: CustomColors.kCyanColor,
+                  color2: CustomColors.kYellowColor,
+                  color3: CustomColors.kPurpleColor,
+                  color4: CustomColors.kLightPinkColor,
+                  value: 0.8,
+                  iconPath: 'assets/icons/footprints.svg',
+                  metricType: 'تعداد قدم ها',
+                  metricCount1: controller.stepsCount.value.toString(),
+                  metricCount2: '860');
+            }),
             Spacer(),
             Padding(
               padding: const EdgeInsets.symmetric(
@@ -214,9 +217,10 @@ class DashboardScreen extends StatelessWidget {
       double value,
       String iconPath}) {
     return Container(
-      height: SizeConfig.blockSizeVertical * 30, // 30% of screen
-      width:
-          SizeConfig.blockSizeHorizontal * 90, // 90% of total width of screen
+      height: SizeConfig.blockSizeVertical * 30,
+      // 30% of screen
+      width: SizeConfig.blockSizeHorizontal * 90,
+      // 90% of total width of screen
       margin: EdgeInsets.symmetric(vertical: SizeConfig.blockSizeVertical * 1),
       decoration: BoxDecoration(
           color: CustomColors.kPrimaryColor,
