@@ -3,10 +3,17 @@ import 'package:pedometer/pedometer.dart';
 
 class DashboardScreenController extends GetxController {
   static const String tag = "DashboardScreenController";
+  dynamic args;
+  String name = "";
+  int age = 0;
   RxInt stepsCount = 0.obs;
   RxString pedometerStatus = "".obs;
   Stream<StepCount> _stepCountStream;
   Stream<PedestrianStatus> _pedestrianStatusStream;
+
+  DashboardScreenController(
+    this.args,
+  );
 
   void onStepCount(StepCount event) {
     /// Handle step count changed
@@ -30,6 +37,15 @@ class DashboardScreenController extends GetxController {
     /// Listen to streams and handle errors
     _stepCountStream.listen(onStepCount);
     _pedestrianStatusStream.listen(onPedestrianStatusChanged);
+  }
+
+  @override
+  void onInit() async {
+    super.onInit();
+    if (args != null && args["name"] != null) {
+      name = args["name"];
+      age = args["age"];
+    }
   }
 
   @override

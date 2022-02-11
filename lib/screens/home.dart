@@ -4,7 +4,6 @@ import 'package:fitness_app/screens/dashboard_screen.dart';
 import 'package:fitness_app/screens/metric_screen.dart';
 import 'package:fitness_app/screens/profile_screen.dart';
 import 'package:fitness_app/size_config.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,6 +15,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  get args => Get.arguments;
+
   int _currentIndex = 2;
 
   final tabs = [
@@ -34,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    Get.put(DashboardScreenController());
+    Get.put(DashboardScreenController(args));
     super.initState();
   }
 

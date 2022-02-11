@@ -11,12 +11,12 @@ class DashboardScreen extends GetView<DashboardScreenController> {
     return SizedBox(
       height: SizeConfig.blockSizeVertical * 90,
       child: Column(
-        children: [_buildDashboardCards()],
+        children: [_buildDashboardCards(controller)],
       ),
     );
   }
 
-  Widget _buildDashboardCards() {
+  Widget _buildDashboardCards(DashboardScreenController controller) {
     return Expanded(
       child: Container(
         width: double.infinity,
@@ -71,8 +71,8 @@ class DashboardScreen extends GetView<DashboardScreenController> {
                             SizedBox(
                               height: 20,
                             ),
-                            const Text(
-                              '24',
+                            Text(
+                              controller.age.toString(),
                               style: TextStyle(
                                 fontSize: 25,
                                 color: Colors.white,

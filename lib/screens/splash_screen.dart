@@ -1,8 +1,9 @@
 import 'package:fitness_app/constants.dart';
-import 'package:fitness_app/screens/home.dart';
 import 'package:fitness_app/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'binding.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key key}) : super(key: key);
@@ -20,11 +21,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
   handleSplash() {
     Future.delayed(const Duration(seconds: 4), () {
-                    Get.off(
-                      () => const Login(),
-                      transition: Transition.zoom,
-                      duration: Duration(milliseconds: 1000),
-                    );
+      Get.off(
+        () => const Login(),
+        transition: Transition.zoom,
+        duration: Duration(milliseconds: 1000),
+        binding: LoginScreenBinding(),
+      );
     });
   }
 
