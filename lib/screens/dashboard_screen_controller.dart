@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:get/get.dart';
 import 'package:pedometer/pedometer.dart';
 
@@ -54,13 +56,11 @@ class DashboardScreenController extends GetxController {
     initPlatformState();
   }
 
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  // }
-  //
-  // @override
-  // void onClose() {
-  //   super.onClose();
-  // }
+  int getRandomAge() {
+    Random rnd;
+    int min = 20;
+    int max = 60;
+    rnd = Random();
+    return min + rnd.nextInt(max - min);
+  }
 }

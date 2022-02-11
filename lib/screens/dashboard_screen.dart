@@ -141,8 +141,8 @@ class DashboardScreen extends GetView<DashboardScreenController> {
                             SizedBox(
                               height: 20,
                             ),
-                            const Text(
-                              '21',
+                            Text(
+                              controller.getRandomAge().toString(),
                               style: TextStyle(
                                 fontSize: 25,
                                 color: Colors.white,
