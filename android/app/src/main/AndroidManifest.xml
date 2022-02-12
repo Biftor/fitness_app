@@ -3,7 +3,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
     <application
-        android:label="Fitness app"
+        android:label="به زی"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
