@@ -1,7 +1,9 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pedometer/pedometer.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class DashboardScreenController extends GetxController {
   static const String tag = "DashboardScreenController";
@@ -32,13 +34,29 @@ class DashboardScreenController extends GetxController {
   }
 
   Future<void> initPlatformState() async {
-    /// Init streams
-    _pedestrianStatusStream = await Pedometer.pedestrianStatusStream;
-    _stepCountStream = await Pedometer.stepCountStream;
+    bool activityRecognitionGranted =
+        await Permission.activityRecognition.request().isGranted;
+    if (activityRecognitionGranted) {
+      /// Init streams
+      _pedestrianStatusStream = await Pedometer.pedestrianStatusStream;
+      _stepCountStream = await Pedometer.stepCountStream;
 
-    /// Listen to streams and handle errors
-    _stepCountStream.listen(onStepCount);
-    _pedestrianStatusStream.listen(onPedestrianStatusChanged);
+      /// Listen to streams and handle errors
+      _stepCountStream.listen(onStepCount);
+      _pedestrianStatusStream.listen(onPedestrianStatusChanged);
+    } else {
+      if (Get.context != null)
+        ScaffoldMessenger.of(Get.context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(
+            SnackBar(
+              content: Text(
+                "دسترسی مورد نیاز به برنامه داده نشده است",
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+          );
+    }
   }
 
   @override
