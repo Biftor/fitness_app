@@ -59,7 +59,7 @@ class DashboardScreenController extends GetxController {
   int getRandomAge() {
     Random rnd;
     int min = 20;
-    int max = 60;
+    int max = 35;
     rnd = Random();
     return min + rnd.nextInt(max - min);
   }
